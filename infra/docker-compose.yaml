@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: youruser
+      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_DB: yourdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./apps/backend
+      dockerfile: Dockerfile
+    environment:
+      - DATABASE_URL=postgres://youruser:yourpassword@postgres:5432/yourdb?sslmode=disable
+      - PORT=8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    command: ["./your-backend-binary"] # Or your entrypoint if using 'go run' or whatever
+
+volumes:
+  pgdata:
