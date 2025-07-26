@@ -1,7 +1,7 @@
 package main
 
 import (
-	"immuno-track/src/routes"
+	"immuno-track/internal/routes"
 
 	"github.com/gin-gonic/gin"
 )

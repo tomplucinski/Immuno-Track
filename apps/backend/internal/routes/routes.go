@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"immuno-track/src/handlers"
+	"immuno-track/internal/handlers"
 
 	"github.com/gin-gonic/gin"
 )
